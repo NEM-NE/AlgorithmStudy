@@ -82,31 +82,22 @@ int solution(int N, vector<vector<int> > road, int K) {
 #include<limits>
 #include<utility>
 #include<unordered_map>
-
+#include<limits>
 using namespace std;
-int infi=numeric_limits<int>::max();
+
 int dis[51];
 
 unordered_map<int,vector<pair<int,int>>> neighbors;
 
 int solution(int N, vector<vector<int> > road, int K) {
     int answer = 0;
-    memset(dis,infi,sizeof(dis));
+    memset(dis,500001,sizeof(dis));
     dis[1]=0;
     for(int i=0;i<road.size()-1;i++)
     {
+  
      pair<int,int> edge0=make_pair(road[i][0],road[i][2]);
      pair<int,int> edge1=make_pair(road[i][1],road[i][2]);
-        if(!neighbors.count(road[i][0]))
-        {
-            vector<pair<int,int>> v;
-            neighbors[road[i][0]]=v;
-            }
-        if(!neighbors.count(road[i][1]))
-        {
-            vector<pair<int,int>> v;
-            neighbors[road[i][1]]=v;
-            }
         neighbors[road[i][0]].push_back(edge1);
         neighbors[road[i][1]].push_back(edge0);
     }
@@ -117,9 +108,7 @@ queue<int> q;
     {
         int cur=q.front();
         q.pop();
-        if(dis[cur]<=K)
-            answer++;
-        
+    
         for(auto neighbor : neighbors[cur])
         {
             if(dis[cur]+neighbor.second<dis[neighbor.first])
@@ -129,6 +118,10 @@ queue<int> q;
                 }
         }
     }
-    
+    for(int i=1;i<=N;i++)
+    {
+   if(dis[i]<=K)
+            answer++;
+    }
     return answer;
 }
