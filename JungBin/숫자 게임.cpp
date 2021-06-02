@@ -3,8 +3,6 @@
 #include<cstring>
 using namespace std;
 
-
-
 int solution(vector<int> A, vector<int> B) {
     int answer = -1;
 if(A.empty())
@@ -33,8 +31,6 @@ return 0;
 #include<cstring>
 #include<algorithm>
 using namespace std;
-
-
 
 int solution(vector<int> A, vector<int> B) {
     int answer = -1;
