@@ -29,3 +29,30 @@ int findmaxdepartment(vector<int> topick,int budget)
 int solution(vector<int> d, int budget) {
 return findmaxdepartment(d,budget);
 }
+
+
+#include <iostream>
+#include <stdio.h>
+#include <string>
+#include <vector>
+#include<algorithm>
+using namespace std;
+bool cmp(int a,int b)
+{
+    return a > b;
+}
+int solution(vector<int> d, int budget) {
+sort(d.begin(),d.end(),cmp);
+int cnt=0;
+    while(budget>0)
+{
+    budget-=d.back();
+        d.pop_back();
+    cnt++;
+}
+    
+    if(budget==0)
+    return cnt;
+    else
+        return cnt-1;
+}
